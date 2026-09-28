@@ -475,3 +475,43 @@ Cloud & Infrastructure / DevOps Engineering
 
 GitHub:
 https://github.com/shankar0797
+
+## Project Evidence
+
+The following screenshots provide evidence of the deployed architecture, security controls, proxy functionality, Docker networking, and failure recovery testing.
+
+### 1. ALB Target Health
+
+The Application Load Balancer target group shows the EC2 target as healthy on port 8081.
+
+![ALB Target Healthy](screenshots/01-alb-target-healthy.png)
+
+### 2. End-to-End API Testing
+
+Requests successfully flow through the ALB, reverse proxy, API gateway, and backend microservices.
+
+![End-to-End API Testing](screenshots/02-end-to-end-api-testing.png)
+
+### 3. Docker Private Network
+
+Backend services communicate through the private Docker bridge network without exposing their application ports directly on the EC2 host.
+
+![Docker Private Network](screenshots/03-docker-private-network.png)
+
+### 4. Forward Proxy and Logging
+
+The Squid forward proxy successfully establishes an HTTPS tunnel and records the request in its access log.
+
+![Forward Proxy Logging](screenshots/04-forward-proxy-logging.png)
+
+### 5. Security Group Configuration
+
+The EC2 security group restricts reverse-proxy traffic to the Application Load Balancer security group.
+
+![Security Group](screenshots/05-security-group.png)
+
+### 6. Failure and Recovery Testing
+
+The reverse proxy was intentionally stopped, an ALB request returned `502 Bad Gateway`, and service functionality was restored after restarting the reverse proxy.
+
+![Reverse Proxy Failure Recovery](screenshots/06-reverse-proxy-failure-recovery.png)
